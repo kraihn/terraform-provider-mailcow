@@ -55,6 +55,22 @@ func (c *Client) DoRequest(req *http.Request) ([]byte, error) {
 	return body, err
 }
 
+func (b &[]byte) ValidateRequest (error) {
+	var responses []postResponse
+	err := json.Unmarshal(b, &responses)
+	if err != nil {
+		return err
+	}
+
+	for _, res := range responses {
+		if res.Type != Success {
+			return errors.New(res.Message)
+		}
+	}
+
+	return nil
+}
+
 func (c *Client) GetAlias(id int64) (*AliasResponse, error) {
 	url := c.HostURL + "/api/v1/get/alias/" + strconv.FormatInt(id, 10)
 

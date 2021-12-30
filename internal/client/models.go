@@ -10,7 +10,7 @@ const (
 
 type postResponse struct {
 	Type    postResponseType `json:"type"`
-	Message string           `json:"msg"`
+	Message []string           `json:"msg"`
 }
 
 type AliasResponse struct {
