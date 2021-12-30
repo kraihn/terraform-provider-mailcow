@@ -1,0 +1,1 @@
+data "mailcow_all_domains" "example" {}
